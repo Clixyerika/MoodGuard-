@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+requests
+python-dotenv
+ffmpeg-python
+pydub
+transformers
+torch
+huggingface_hub
+git+https://github.com/openai/whisper.git

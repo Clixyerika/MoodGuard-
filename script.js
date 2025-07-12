@@ -1,21 +1,28 @@
 let isLogin = true; // Track current mode
 
-document.getElementById("toggle-link").addEventListener("click", function (e) {
+// Setup toggle once
+const toggleLink = document.getElementById("toggle-link");
+const toggleText = document.getElementById("toggle-text");
+const emailInput = document.getElementById("email");
+const formTitle = document.getElementById("form-title");
+const submitButton = document.querySelector("button[type=submit]");
+
+// Hide email on load
+emailInput.style.display = "none";
+
+toggleLink.addEventListener("click", function (e) {
   e.preventDefault();
   isLogin = !isLogin;
 
-  document.getElementById("form-title").textContent = isLogin ? "Login" : "Sign Up";
-  document.querySelector("button[type=submit]").textContent = isLogin ? "Login" : "Sign Up";
-  document.getElementById("toggle-text").innerHTML = isLogin
-    ? `Don't have an account? <a href="#" id="toggle-link">Sign Up</a>`
-    : `Already have an account? <a href="#" id="toggle-link">Login</a>`;
-
-  // Show email field only for signup
-  document.getElementById("email").style.display = isLogin ? "none" : "block";
+  formTitle.textContent = isLogin ? "Login" : "Sign Up";
+  submitButton.textContent = isLogin ? "Login" : "Sign Up";
+  toggleLink.textContent = isLogin ? "Sign Up" : "Login";
+  // Change the text node before the link
+  toggleText.childNodes[0].textContent = isLogin
+    ? "Don't have an account? "
+    : "Already have an account? ";
+  emailInput.style.display = isLogin ? "none" : "block";
 });
-
-// Hide email on load
-document.getElementById("email").style.display = "none";
 
 document.getElementById("auth-form").addEventListener("submit", async function (e) {
   e.preventDefault();
